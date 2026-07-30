@@ -14,11 +14,14 @@ let emojies = ""
 let messageEl = document.getElementById('message-el')
 let sumEl = document.getElementById('sum-el')
 let cardsEl = document.querySelector('#cards-el')
-
+let firstCard = Math.floor(Math.random() * 14) + 2
+let secondCard = Math.floor(Math.random() * 14) + 2
+let sum = firstCard + secondCard
 function startGame(){
-    let firstCard = Math.floor(Math.random() * 14) + 2
-    let secondCard = Math.floor(Math.random() * 14) + 2
-    let sum = firstCard + secondCard
+    renderGame()
+}
+
+function renderGame(){
     sumEl.textContent = "Sum: " + sum
     cardsEl.textContent = "Cards: " + firstCard + " " + secondCard
     if (sum <= 20) {
@@ -39,10 +42,14 @@ function startGame(){
 }
 
 function newCard() {
-    console.log('Drawing a new card from the deck!')
+    let card = Math.floor(Math.random() * 14) + 2
+    sum += card
+    renderGame()
 }
 
-
+function resetGame() {
+    location.reload()
+}
 // Check if the person is old enough to enter the nightclub (21)
 // Log a suitable message to the console in both cases
 
