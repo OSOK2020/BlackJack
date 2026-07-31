@@ -17,6 +17,7 @@ let cardsEl = document.querySelector('#cards-el')
 let firstCard = Math.floor(Math.random() * 14) + 2
 let secondCard = Math.floor(Math.random() * 14) + 2
 let sum = firstCard + secondCard
+
 function startGame(){
     renderGame()
 }
