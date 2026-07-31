@@ -16,6 +16,8 @@ let sumEl = document.getElementById('sum-el')
 let cardsEl = document.querySelector('#cards-el')
 let firstCard = Math.floor(Math.random() * 14) + 2
 let secondCard = Math.floor(Math.random() * 14) + 2
+let cards = [firstCard, secondCard] // Ordered list of items
+
 let sum = firstCard + secondCard
 
 function startGame(){
@@ -23,8 +25,10 @@ function startGame(){
 }
 
 function renderGame(){
+    // render out first card and second card
+    cardsEl.textContent = "Cards: " + cards[0] + " " + cards[1]
+    // render out sum of all cards we have
     sumEl.textContent = "Sum: " + sum
-    cardsEl.textContent = "Cards: " + firstCard + " " + secondCard
     if (sum <= 20) {
         message = "Do you want to draw a new card? "
         emojies = emoji1
@@ -94,3 +98,32 @@ function processOrder() {
 
 processOrder()
 processOrder()
+
+let myLinkedinProfile = ["Analytical finance",
+                        "BI",
+                        "Controlling"
+                        ]
+
+console.log(myLinkedinProfile[0])
+console.log(myLinkedinProfile[1])
+console.log(myLinkedinProfile[2])
+
+let messages = [
+    "Hey, how's it going?",        
+    "I'm great, thank you! How about you?",
+    "All good. Been working on my portfolio lately."
+]
+
+let newMessage = "Same here!"
+messages.push(newMessage)
+console.log(messages)
+
+// How can you remove the last item in an array? Try to google it!
+let lastItem = messages.length-1
+
+messages.pop(lastItem)
+
+console.log(messages.length)
+
+console.log(messages[messages.length-1])
+
