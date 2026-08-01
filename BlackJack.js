@@ -4,7 +4,7 @@
 
 // 2. Create a variable, sum, and set it to the sum of the two cards
 let hasBlackjack = false
-let isAlive = true
+let isAlive = false
 let message = ""
 let emoji = document.getElementById('emoji-el')
 let emoji1 = "\u{1F60A}"
@@ -14,21 +14,51 @@ let emojies = ""
 let messageEl = document.getElementById('message-el')
 let sumEl = document.getElementById('sum-el')
 let cardsEl = document.querySelector('#cards-el')
-let firstCard = Math.floor(Math.random() * 14) + 2
-let secondCard = Math.floor(Math.random() * 14) + 2
-let cards = [firstCard, secondCard] // Ordered list of items
+let firstCard = 0
+let secondCard = 0
+let sum = 0
+let cards = []
 
-let sum = firstCard + secondCard
+let player = {
+    name: "Odia",
+    chips: 7
+}
+
+let playerEl = document.getElementById('player-el')
+playerEl.textContent = "Name: " + player.name + " $Chips: " + player.chips 
+
+console.log(cards)
+
+function getRandomCard(){
+    let randomCard = Math.floor(Math.random() * 13) + 1
+    if (randomCard === 1) {
+        return 11
+    } else if (randomCard >= 10) {
+        return 10
+    } else {
+        return randomCard
+    }
+
+}
 
 function startGame(){
+    isAlive = true
+    firstCard = getRandomCard()
+    secondCard = getRandomCard()
+    cards = [firstCard, secondCard] // Ordered list of items
+    sum = firstCard + secondCard
     renderGame()
 }
 
 function renderGame(){
     // render out first card and second card
-    cardsEl.textContent = "Cards: " + cards[0] + " " + cards[1]
+    cardsEl.textContent = "Cards: "
     // render out sum of all cards we have
     sumEl.textContent = "Sum: " + sum
+    // a loop that renders out all cards 
+    for (let i = 0; i < cards.length; i++){
+        cardsEl.textContent += cards[i] + " "
+    }
     if (sum <= 20) {
         message = "Do you want to draw a new card? "
         emojies = emoji1
@@ -47,9 +77,13 @@ function renderGame(){
 }
 
 function newCard() {
-    let card = Math.floor(Math.random() * 14) + 2
-    sum += card
-    renderGame()
+    if (isAlive && hasBlackjack != true) {
+        let card = getRandomCard()
+        sum += card
+        cards.push(card)
+        renderGame()
+    } 
+
 }
 
 function resetGame() {
@@ -127,3 +161,30 @@ console.log(messages.length)
 
 console.log(messages[messages.length-1])
 
+console.log(lastItem)
+
+let randomNumber = Math.floor( Math.random() * 6 ) + 1
+
+console.log(randomNumber)
+
+// Create a function, rollDice(), that returns a random number between 1 and 6
+
+function rollDice() {
+    let randomNumber = Math.floor( Math.random() * 6 ) + 1
+    return randomNumber
+}
+
+rollDice()
+
+let hasSolvedChallenge = false
+let hasHintsLeft = false
+
+// Create an if statement that checks that both variables are false.
+if (hasSolvedChallenge === false && hasHintsLeft === false) {
+    showSolution()
+}
+// If so, run the showSolution() function
+
+function showSolution() {
+    console.log("Showing the solution....")
+}
